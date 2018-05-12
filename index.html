@@ -59,7 +59,7 @@
                         <b-input-group>
                             <b-form-input v-model="searchTerm" placeholder="名前でフィルター"></b-form-input>
                             <b-input-group-append>
-                                <b-btn :click="searchTerm=''">🗙</b-btn>
+                                <b-btn v-on:click="searchTerm=''">🗙</b-btn>
                             </b-input-group-append>
                         </b-input-group>
                     </div>
@@ -170,7 +170,7 @@
         },
         computed:{
             filteredNm : function(){
-                console.log(this.searchTerm);
+                console.log("filtering for : " + this.searchTerm);
                 var haystack = this.sortedByRarity;
                 if(this.searchTerm === "") return haystack;
                 return haystack.filter(needle => needle.name.includes(this.searchTerm));
