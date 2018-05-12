@@ -59,7 +59,7 @@
                         <b-input-group>
                             <b-form-input v-model="searchTerm" placeholder="名前でフィルター"></b-form-input>
                             <b-input-group-append>
-                                <b-btn v-on:click="searchTerm=''">🗙</b-btn>
+                                <b-btn @click="searchTerm=''">🗙</b-btn>
                             </b-input-group-append>
                         </b-input-group>
                     </div>
@@ -119,9 +119,9 @@
                         <b-tab title="セーブ／シェア">
                             <div class="row mb-3">
                                 <b-input-group>
-                                    <b-form-input readonly v-model="URL"></b-form-input>
+                                    <b-form-input readonly v-model="URL" id="url-input"></b-form-input>
                                     <b-input-group-append>
-                                        <b-btn>🗙</b-btn>
+                                        <b-btn @click="copyURL('url-input')">📋コピー</b-btn>
                                     </b-input-group-append>
                                 </b-input-group>
                             </div>
@@ -249,6 +249,10 @@
                 }
                 return o;
             } ,
+            copyURL: function(id){
+              document.getElementById(id).select();
+              document.execCommand("Copy");
+            },
             plotChart: function(){
                 var timeline = []
                 var nm = this.order
